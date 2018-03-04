@@ -1,0 +1,138 @@
+:root {
+  --success: #28a745;
+  --bg-color: #fff;
+  --danger-theme: {
+    color: #dc3545;
+    background-color: #fff;
+  }
+  --font-size: 1rem;
+}
+
+.text-success {
+  color: var(--success);
+  background-color: var(--bg-color);
+}
+
+.test-danger {
+  @apply --danger-theme;
+}
+
+h1 {
+  font-size: calc(var(--font-size) * 2);
+}
+
+@custom-media --small-viewport (max-width: 30em);
+
+@media (--small-viewport) {
+  font-size: 16px;
+}
+
+@custom-media --only-medium-screen (width >= 500px) and (width <= 1200px);
+
+@media (--only-medium-screen) {
+  font-size: 18px;
+}
+
+@custom-selector :--button button, .button;
+@custom-selector :--enter :hover, :focus;
+
+:--button {
+  font-size: 16px;
+  padding: 0 20px;
+  height: 32px;
+  border: 1px solid #ccc;
+}
+:--button:--enter {
+  border: 1px solid #666;
+  outline: none;
+}
+
+a {
+  & span {
+    color: white;
+  }
+
+  @nest span & {
+    color: blue;
+  }
+
+  @media (min-width: 30em) {
+    color: yellow;
+  }
+}
+
+.foo {
+  background-image: image-set(
+    url(img/test.png) 1x,
+    url(img/test-2x.png) 2x,
+    url(my-img-print.png) 600dpi
+  );
+}
+
+a {
+  color: color(red alpha(-10%));
+}
+
+a:hover {
+  color: color(red blackness(80%));
+}
+
+body {
+  color: hwb(90, 0%, 0%, 0.5);
+}
+
+.foo {
+  color: gray(85);
+}
+
+.bar {
+  color: gray(10%, 50%);
+}
+
+body {
+  color: rebeccapurple;
+}
+
+h2 {
+  font-variant-caps: small-caps;
+}
+table {
+  font-variant-numeric: lining-nums;
+}
+
+nav :any-link {
+  background-color: yellow;
+}
+
+p:matches(:first-child, .special) {
+  color: red;
+}
+
+p:not(:first-child, .special) {
+  color: red;
+}
+
+div {
+  color: hsl(90deg 90% 70%);
+  background-color: hsl(300grad 25% 15% / 70%);
+}
+
+body {
+  font-family: system-ui;
+}
+
+@keyframes mymove {
+  from {
+    top: 0px;
+  }
+  to {
+    top: 200px;
+  }
+}
+div.mymove {
+  width: 100px;
+  height: 100px;
+  background: red;
+  position: relative;
+  animation: mymove 5s infinite;
+}
